@@ -62,6 +62,9 @@ while iteration < n_iterations:
         print('\nEpoch:', epoch)
         print('Iteration: {} ({:.02f}%)'.format(iteration, 100 * iteration / n_iterations))
         print(f'Best aggregate reward: {best_epoch_reward_sum:.2f}')
+        print(f'Epsilon: {agent.epsilon}')
+        print(f'Alpha: {agent.alpha}')
+        # print(f'Q: {agent.q_table}')
 
     epoch_iterations_list.append(epoch_iteration)
     epoch_rewards_list.append(epoch_reward_sum)

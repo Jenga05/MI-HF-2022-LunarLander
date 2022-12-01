@@ -3,11 +3,11 @@ import subprocess
 from communication_master import CommunicationMaster
 
 
-classname = 'StudentCodeBinder'
-filename = 'StudentCodeBinder.java'
+classname = 'hello.hello.StudentCodeBinder'
+filename = 'hello.hello.StudentCodeBinder.java'
 
-java_exec_path = ''  # TODO
-javac_exec_path = ''  # TODO
+java_exec_path = 'C:\\Program Files\\Java\\jdk-16.0.2\\bin\\java.exe'  # TODO
+javac_exec_path = 'C:\\Program Files\\Java\\jdk-16.0.2\\bin\\javac.exe'  # TODO
 
 
 class LunarLanderJavaAgent:

@@ -35,7 +35,7 @@ class LunarLanderGUI:
         self.window = Tk()
         self.window.resizable(False, False)
         # self.window.wm_attributes("-topmost", 1)
-        self.window.title("Lunar Lander v1.0")
+        self.window.title("Lunar hello.Lander v1.0")
 
         self.canvas = Canvas(self.window,
                              width=self.env.map_size.x * env_scaler,
@@ -189,9 +189,9 @@ if __name__ == "__main__":
     n_iterations = int(1e6)
 
     # python
-    # agent = LunarLanderAgent(observation_space=env.observation_space,
-    #                          action_space=env.action_space,
-    #                          n_iterations=n_iterations)
+    agent = LunarLanderAgent(observation_space=env.observation_space,
+                             action_space=env.action_space,
+                             n_iterations=n_iterations)
 
     # java
     # agent = LunarLanderJavaAgent(observation_space=env.observation_space,

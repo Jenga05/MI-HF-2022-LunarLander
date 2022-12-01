@@ -86,9 +86,9 @@ A vektor mind a négy értéke folytonos (float), és az alábbi tartományban l
 ## Beadandó
 
 * A **Moodle**-re python és java nyelven írt implementáció esetében is egy-egy fájlt kell feltölteni. Ehhez kiadunk egy-egy sablont, amiben a szükséges függvények megtalálhatóak. Ezek szignatúráit nem érdemes módosítani, különben nem fog lefutni a beadás. 
-* Java implementáció esetén nem lehet használni semmilyen külső csomagot, csakis a java 11.0.7 beépített könyvtárait. A Q-táblázatos megoldáshoz előre megírtunk egy egyszerű osztályt a [LunarLanderAgentBase.java](LunarLanderAgentBase.java) fájlban. 
+* Java implementáció esetén nem lehet használni semmilyen külső csomagot, csakis a java 11.0.7 beépített könyvtárait. A Q-táblázatos megoldáshoz előre megírtunk egy egyszerű osztályt a [hello.LunarLanderAgentBase.java](LunarLanderAgentBase.java) fájlban. 
 * Python-ban (3.7.3-as verzió) írt megoldás esetén lehet használni a `numpy` könyvtárat (1.16.2-es verzió). 
-* Mindkét esetben **pontosan egy fájlt kell feltölteni**: [LunarLanderAgentBase.java](LunarLanderAgentBase.java) vagy [lunar_lander_agent_base.py](lunar_lander_agent_base.py) névvel.
+* Mindkét esetben **pontosan egy fájlt kell feltölteni**: [hello.LunarLanderAgentBase.java](LunarLanderAgentBase.java) vagy [lunar_lander_agent_base.py](lunar_lander_agent_base.py) névvel.
 
 
 ## A futtatókörnyezet beállítása
@@ -97,8 +97,8 @@ A feladatot **java** és **python** nyelven egyaránt meg lehet oldani, az egyes
 Emellett a feladathoz mellékeltünk egy grafikus megjelenítőt (GUI), amely megfelelő beállítások mellett Java és Python megoldáshoz egyaránt használható.
 
 ### Java-specifikus beállítások
-Java nyelv használata esetén az implementációnkat a [LunarLanderAgentBase.java](LunarLanderAgentBase.java) fájlban készíthetjük el, 
-majd az elkészült megoldás a [LunarLanderEvaluator.java](LunarLanderEvaluator.java) fájl futtatásával tesztelhető.
+Java nyelv használata esetén az implementációnkat a [hello.LunarLanderAgentBase.java](LunarLanderAgentBase.java) fájlban készíthetjük el, 
+majd az elkészült megoldás a [hello.LunarLanderEvaluator.java](LunarLanderEvaluator.java) fájl futtatásával tesztelhető.
 
 Amennyiben a grafikus megjelenítőt (GUI) is használni szeretnénk, úgy telepítenünk kell egy Python futtatókörnyezetet (lásd: következő bekezdés),
 majd meg kell adnunk a Java futtatókörnyezetünkhöz tartozó `java` és `javac` végrehajtható fájlok elérési útját a 
@@ -126,7 +126,7 @@ Ezt követően telepítsük a futtatáshoz szükséges python könyvtárakat, am
 A telepítés legegyszerűbben a `pip` parancs segítségével eszközölhető, az alábbi módon: ```pip install -r requirements.txt```
 
 Kezdetben győződjünk meg róla, hogy a [lunar_lander_gui.py](lunar_lander_gui.py) és a
-[lunar_lander_evaluator.py](lunar_lander_evaluator.py) fájlokban a `LunarLanderAgent` osztály egy példányát adjuk meg az `agent` változó 
+[lunar_lander_evaluator.py](lunar_lander_evaluator.py) fájlokban a `hello.LunarLanderAgent` osztály egy példányát adjuk meg az `agent` változó 
 értékeként. Ennek hatására a keretrendszer a [lunar_lander_agent_base.py](lunar_lander_agent_base.py) fájlban található implementációt 
 fogja alapul venni a futtatás során.
 
@@ -138,23 +138,23 @@ részletezett interfész-specifikáció alapján. Az implementált megoldást ki
 
 ## Az interfészről
 
-A feladat megoldása során csak a [LunarLanderAgentBase.java](LunarLanderAgentBase.java) vagy [lunar_lander_agent_base.py](lunar_lander_agent_base.py) 
-fájlt szabad módosítani, illetve ez az egyetlen fájl, amelyet a Moodle rendszerbe be is kell adni. Az ebben a fájlban fájlban található `LunarLanderAgentBase` osztályt 
-implementálja majd a `LunarLanderAgent` osztály, amely kiegészíti azt egy `step()` függvénnyel. A `LunarLanderAgentBase` osztály konstruktorában alapból 
+A feladat megoldása során csak a [hello.LunarLanderAgentBase.java](LunarLanderAgentBase.java) vagy [lunar_lander_agent_base.py](lunar_lander_agent_base.py) 
+fájlt szabad módosítani, illetve ez az egyetlen fájl, amelyet a Moodle rendszerbe be is kell adni. Az ebben a fájlban fájlban található `hello.LunarLanderAgentBase` osztályt 
+implementálja majd a `hello.LunarLanderAgent` osztály, amely kiegészíti azt egy `step()` függvénnyel. A `hello.LunarLanderAgentBase` osztály konstruktorában alapból 
 definiálásra kerül egy Q táblát leíró változó (`qTable` vagy `q_table`), és egy `epsilon` paraméter. Ezek létezése a `step()` függvény futása miatt fontos, 
 **enélkül az nem fog működni**.
 
-Emellett a `LunarLanderAgentBase` osztályt definiáló fájl tartalmaz egy `OBSERVATION_SPACE_RESOLUTION` nevű statikus változót, amelyben meg kell adnunk, 
+Emellett a `hello.LunarLanderAgentBase` osztályt definiáló fájl tartalmaz egy `OBSERVATION_SPACE_RESOLUTION` nevű statikus változót, amelyben meg kell adnunk, 
 hogy az állapottér 4 értékét egyenként hány szintre fogjuk kvantálni. Ez azért fontos, mert **ez határozza meg a Q tábla méretét**. Emiatt az állapot 
 kvantálásáért felelős függvény (`quantizeState()` vagy `quantize_state()`) mindig egy olyan integer listát/tömböt kell visszaadjon, amellyel a 
 Q tábla indexelhető. Például, hogyha a kvantálási szinteket a következő módon választjuk meg: `[15, 10, 15, 8]` akkor a kvantáló függvény 
 visszatérési értéke értékkészletének a következőnek kell lennie: `[0-14, 0-9, 0-14, 0-7]` (tehát például az első állapotleírónak legalább 0 és legfeljebb 14 **integer** értékűnek kell lennie).
 
-**Mielőtt belekezdenénk az implementációba, javasolt tanulmányozni a `LunarLanderAgent` osztályban definiált `step()` függvény működését!**
+**Mielőtt belekezdenénk az implementációba, javasolt tanulmányozni a `hello.LunarLanderAgent` osztályban definiált `step()` függvény működését!**
 
 A megvalósítandó függvények szignatúráinak leírása az alábbi:
 
-**konstruktor** `LunarLanderAgentBase()`, `LunarLanderAgentBase()`
+**konstruktor** `hello.LunarLanderAgentBase()`, `hello.LunarLanderAgentBase()`
   * `observation space`: minimum-maximum párok listája/tömbje, amelyek az állapotteret leíró változók által fölvett legkisebb és legnagyobb értéket (float) tartalmazzák: `[platformra mutató vektor X komponense, platformra mutató vektor Y komponense, sebességvektor X komponense, sebességvektor Y komponense]`
   * `action space`: integer lista/tömb, a lehetséges cselekvésekkel (`[0, 1, 2, 3]`, ahol a 0 a "ne csinálj semmit", 1 a "fő hajtómű", 2 a "hajtómű jobbra" és 3 a "hajtómű balra")
   * `number of iterations`: tanulási iterációk száma

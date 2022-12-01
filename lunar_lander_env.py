@@ -202,7 +202,7 @@ class Environment(object):
 
 
 if __name__ == "__main__":
-    # environment = Environment(platform_pos=Environment.map_size.x / 2.)
+    # environment = hello.Environment(platform_pos=hello.Environment.map_size.x / 2.)
     environment = Environment()
     while not environment.done:
         state, reward, done, info = environment.step(action=random.choice(environment.action_space))
