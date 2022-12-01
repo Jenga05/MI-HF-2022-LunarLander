@@ -2,21 +2,21 @@ import random
 from math import sqrt
 
 
-class Vector(object):
+class java.Vector(object):
 
     def __init__(self, x, y):
-        super(Vector, self).__init__()
+        super(java.Vector, self).__init__()
         self.x, self.y = x, y
 
     def __add__(self, vector):
         if isinstance(vector, self.__class__):
             return self.__class__(self.x + vector.x, self.y + vector.y)
-        return super(Vector, self).__add__(vector)
+        return super(java.Vector, self).__add__(vector)
 
     def __sub__(self, vector):
         if isinstance(vector, self.__class__):
             return self.__class__(self.x - vector.x, self.y - vector.y)
-        return super(Vector, self).__sub__(vector)
+        return super(java.Vector, self).__sub__(vector)
 
     def __mul__(self, vector):
         if isinstance(vector, self.__class__):
@@ -36,20 +36,20 @@ class Vector(object):
         self.y = self.y / _length
 
 
-class Lander(object):
+class java.Lander(object):
     size = 5.
     max_speed = 7.
-    thrust_vector_main_engine = Vector(0., -0.4)
-    thrust_vector_left_engine = Vector(0.2, 0.)
-    thrust_vector_right_engine = Vector(-0.2, 0.)
+    thrust_vector_main_engine = java.Vector(0., -0.4)
+    thrust_vector_left_engine = java.Vector(0.2, 0.)
+    thrust_vector_right_engine = java.Vector(-0.2, 0.)
 
     def __init__(self, pos, vel=None):
         self.pos = pos
         if vel is None:
-            self.vel = Vector(0., 0.)
+            self.vel = java.Vector(0., 0.)
         else:
             self.vel = vel
-        super(Lander, self).__init__()
+        super(java.Lander, self).__init__()
 
     def step(self, force):
         self.vel = self.vel + force
@@ -66,23 +66,23 @@ class Lander(object):
         return False
 
 
-class Platform(object):
+class java.Platform(object):
     size = 20.
 
     def __init__(self, pos):
         self.pos = pos
 
-    def vector_from_lander(self, lander: Lander):
+    def vector_from_lander(self, lander: java.Lander):
         return self.pos - lander.pos
 
 
-class Environment(object):
-    map_size = Vector(300., 200.)
-    platform_horisontal_pos_range = (Platform.size, map_size.x - Platform.size)
-    lander_start_pos = Vector(map_size.x / 2., map_size.y / 10.)
-    lander = Lander(pos=lander_start_pos)
-    platform = Platform(pos=Vector(map_size.x / 2., map_size.y))
-    gravity = Vector(0, 0.2)
+class java.Environment(object):
+    map_size = java.Vector(300., 200.)
+    platform_horisontal_pos_range = (java.Platform.size, map_size.x - java.Platform.size)
+    lander_start_pos = java.Vector(map_size.x / 2., map_size.y / 10.)
+    lander = java.Lander(pos=lander_start_pos)
+    platform = java.Platform(pos=java.Vector(map_size.x / 2., map_size.y))
+    gravity = java.Vector(0, 0.2)
     step_counter = 0
     done = False
     result = None
@@ -90,7 +90,7 @@ class Environment(object):
     def __init__(self, platform_pos=None, random_velocity_range=None):
         self.random_velocity_range = random_velocity_range
         self.reset(platform_pos=platform_pos)
-        super(Environment, self).__init__()
+        super(java.Environment, self).__init__()
 
     @property
     def action_space(self):
@@ -105,8 +105,8 @@ class Environment(object):
         return [
             [-self.map_size.x, self.map_size.x],        # Horizontal vector to the center of the platform
             [0, self.map_size.y],                       # Vertical vector to the center of the platform
-            [-Lander.max_speed, Lander.max_speed],      # Horizontal velocity
-            [-Lander.max_speed, Lander.max_speed]       # Vertical velocity
+            [-java.Lander.max_speed, java.Lander.max_speed],      # Horizontal velocity
+            [-java.Lander.max_speed, java.Lander.max_speed]       # Vertical velocity
         ]
 
     @property
@@ -129,13 +129,13 @@ class Environment(object):
             if action == 0:
                 force = self.gravity
             elif action == 1:
-                force = self.gravity + Lander.thrust_vector_main_engine
+                force = self.gravity + java.Lander.thrust_vector_main_engine
                 reward += -0.01
             elif action == 2:
-                force = self.gravity + Lander.thrust_vector_left_engine
+                force = self.gravity + java.Lander.thrust_vector_left_engine
                 reward += -0.01
             elif action == 3:
-                force = self.gravity + Lander.thrust_vector_right_engine
+                force = self.gravity + java.Lander.thrust_vector_right_engine
                 reward += -0.01
 
             prev_vector = self.platform.vector_from_lander(self.lander)
@@ -173,7 +173,7 @@ class Environment(object):
                 {
                     'lander': {
                         'pos': self.lander.pos,
-                        'size': Lander.size,
+                        'size': java.Lander.size,
                         'main_engine': action == 1,
                         'left_engine': action == 2,
                         'right_engine': action == 3
@@ -186,14 +186,14 @@ class Environment(object):
 
     def reset(self, platform_pos=None):
         if self.random_velocity_range is not None:
-            lander_velocity = Vector(random.uniform(self.random_velocity_range[0][0], self.random_velocity_range[0][1]),
+            lander_velocity = java.Vector(random.uniform(self.random_velocity_range[0][0], self.random_velocity_range[0][1]),
                                      random.uniform(self.random_velocity_range[1][0], self.random_velocity_range[1][1]))
         else:
             lander_velocity = None
-        self.lander = Lander(pos=self.lander_start_pos, vel=lander_velocity)
+        self.lander = java.Lander(pos=self.lander_start_pos, vel=lander_velocity)
         if platform_pos is None:
             platform_pos = random.randint(*self.platform_horisontal_pos_range)
-        self.platform = Platform(pos=Vector(platform_pos, self.map_size.y))
+        self.platform = java.Platform(pos=java.Vector(platform_pos, self.map_size.y))
         self.step_counter = 0
         self.done = False
         self.result = None
@@ -202,8 +202,8 @@ class Environment(object):
 
 
 if __name__ == "__main__":
-    # environment = Environment(platform_pos=Environment.map_size.x / 2.)
-    environment = Environment()
+    # environment = java.Environment(platform_pos=java.Environment.map_size.x / 2.)
+    environment = java.Environment()
     while not environment.done:
         state, reward, done, info = environment.step(action=random.choice(environment.action_space))
         print(f"step: {environment.step_counter} state: {state} reward: {reward}")

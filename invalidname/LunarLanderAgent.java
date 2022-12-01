@@ -1,3 +1,5 @@
+package invalidname;
+
 import java.util.Random;
 
 public class LunarLanderAgent extends LunarLanderAgentBase {
@@ -8,7 +10,7 @@ public class LunarLanderAgent extends LunarLanderAgentBase {
     }
 
     public int step(double[] state) {
-        int[] stateQuantized = LunarLanderAgentBase.quantizeState(this.observationSpace, state);
+        int[] stateQuantized = quantizeState(this.observationSpace, state);
         int action = 0;
         if (!this.test && (Math.random() < this.epsilon)) {
             action = this.envActionSpace[ // explore action space

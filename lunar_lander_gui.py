@@ -1,14 +1,14 @@
 from tkinter import *
 from PIL import Image, ImageTk
 
-from lunar_lander_env import Environment
-from lunar_lander_agent import LunarLanderAgent
+from lunar_lander_env import java.Environment
+from lunar_lander_agent import java.LunarLanderAgent
 from lunar_lander_java_agent import LunarLanderJavaAgent
 from lunar_lander_user_agent import LunarLanderUserAgent
 
 
 class LunarLanderGUI:
-    def __init__(self, agent, n_iterations, env: Environment,
+    def __init__(self, agent, n_iterations, env: java.Environment,
                  env_scaler=4, train_update_interval=50, test_update_interval=200):
         self.env = env
         self.state = self.env.reset()
@@ -35,7 +35,7 @@ class LunarLanderGUI:
         self.window = Tk()
         self.window.resizable(False, False)
         # self.window.wm_attributes("-topmost", 1)
-        self.window.title("Lunar Lander v1.0")
+        self.window.title("Lunar java.Lander v1.0")
 
         self.canvas = Canvas(self.window,
                              width=self.env.map_size.x * env_scaler,
@@ -184,19 +184,19 @@ if __name__ == "__main__":
     random_velocity_range = [[-1, 1],
                              [1, 5]]
 
-    env = Environment(random_velocity_range=random_velocity_range)
+    env = java.Environment(random_velocity_range=random_velocity_range)
 
     n_iterations = int(1e6)
 
     # python
-    # agent = LunarLanderAgent(observation_space=env.observation_space,
+    # agent = java.LunarLanderAgent(observation_space=env.observation_space,
     #                          action_space=env.action_space,
     #                          n_iterations=n_iterations)
 
     # java
-    # agent = LunarLanderJavaAgent(observation_space=env.observation_space,
-    #                              action_space=env.action_space,
-    #                              n_iterations=n_iterations)
+    agent = LunarLanderJavaAgent(observation_space=env.observation_space,
+                                 action_space=env.action_space,
+                                 n_iterations=n_iterations)
 
     # user
     # agent = LunarLanderUserAgent(observation_space=env.observation_space,

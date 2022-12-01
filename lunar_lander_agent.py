@@ -1,10 +1,10 @@
 import numpy as np
-from lunar_lander_agent_base import LunarLanderAgentBase
+from lunar_lander_agent_base import java.LunarLanderAgentBase
 
 
-class LunarLanderAgent(LunarLanderAgentBase):
+class java.LunarLanderAgent(java.LunarLanderAgentBase):
     def __init__(self, observation_space, action_space, n_iterations):
-        super(LunarLanderAgent, self).__init__(observation_space, action_space, n_iterations)
+        super(java.LunarLanderAgent, self).__init__(observation_space, action_space, n_iterations)
 
     def step(self, state):
         state_quantized = self.quantize_state(self.observation_space, state)

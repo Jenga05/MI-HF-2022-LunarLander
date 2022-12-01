@@ -1,4 +1,5 @@
-import java.util.Arrays;
+package invalidname;
+
 import java.util.HashMap;
 
 import static java.lang.Math.min;

@@ -2,8 +2,8 @@ import time
 
 import matplotlib.pyplot as plt
 
-from lunar_lander_env import Environment
-from lunar_lander_agent import LunarLanderAgent
+from lunar_lander_env import java.Environment
+from lunar_lander_agent import java.LunarLanderAgent
 from lunar_lander_java_agent import LunarLanderJavaAgent
 
 # For plotting metrics
@@ -21,10 +21,10 @@ print_epoch_interval = 2000
 random_velocity_range = [[-1, 1],
                          [1, 5]]
 
-env = Environment(random_velocity_range=random_velocity_range)
+env = java.Environment(random_velocity_range=random_velocity_range)
 
 # python
-agent = LunarLanderAgent(observation_space=env.observation_space,
+agent = java.LunarLanderAgent(observation_space=env.observation_space,
                          action_space=env.action_space,
                          n_iterations=n_iterations)
 

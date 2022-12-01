@@ -11,7 +11,7 @@ import numpy as np
 OBSERVATION_SPACE_RESOLUTION = [None, None, None, None]  # TODO
 
 
-class LunarLanderAgentBase:
+class java.LunarLanderAgentBase:
     def __init__(self, observation_space, action_space, n_iterations):
         self.observation_space = observation_space
         self.q_table = np.zeros([*OBSERVATION_SPACE_RESOLUTION, len(action_space)])
